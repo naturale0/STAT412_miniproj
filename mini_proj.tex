@@ -107,7 +107,7 @@ Total & $m-R$
     Probability that at least one type I error occurs in individual hypothesis testing.\vspace{0.1in}\\
     \begin{itemize}
       \item $\leftrightarrow$ experiment-wise error rate\vspace{0.1in}\\
-      \item $P(V\geq1)=1-P(V=1)$\vspace{0.1in}\\
+      \item $P(V\geq1)=1-P(V=0)$\vspace{0.1in}\\
       \item If $FWER \leq \alpha$, then probability of one or more type I error of the family is controlled at level $\alpha$ \vspace{0.1in}\\
     \end{itemize}
     Tukey, Scheff\'e, Dunn, $...$ contributed to FWER controlling method
@@ -125,8 +125,8 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
 \frame
 {
   \frametitle{Bonferroni procedure}
-    Suppose there is a set of $n$ hypotheses. We want to test the family-wise hypothesis with level $\alpha$.\vspace{0.07in}\\
-    By testing per-hypothesis on level $\alpha \over n$, we can control $FWER \leq \alpha$.\vspace{0.22in}\\
+    Suppose there is a set of $m$ hypotheses. We want to test the family-wise hypothesis with level $\alpha$.\vspace{0.07in}\\
+    By testing per-hypothesis on level $\alpha \over m$, we can control $FWER \leq \alpha$.\vspace{0.22in}\\
     \begin{block}{Proof}
       By Boole's inequality: $P(\cup_{i=1}^{m}E_i)\leq\sum_{i=1}^m P(E_i)$\vspace{0.07in},\\
       \center $FWER=P(\cup_{i=1}^{m_0}(p_i\leq\dfrac{\alpha}{m}))\leq\sum_{i=1}^{m_0}P(p_i\leq\dfrac{\alpha}{m})=m_0\dfrac{\alpha}m\leq\alpha$
@@ -359,7 +359,8 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
     &f_1(z)=\text{ the density of false nulls.}\\
     &f(z)=p_0f_0(z) + p_1f_1(z)
     \end{flalign*}
-    $fdr(Z)$ is the posterior probability that a null is true.
+    $fdr(Z)$ is the posterior probability that a null is true.\vspace{0.1in}\\
+    \textbf{Local FDR gives answer to the question: \\"How many decisions are wrong in the local area of this hypothesis of interest?"}
 }
 
 \frame
@@ -374,7 +375,7 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
       \item $p_0$ was estimated as maximum $\underline{0.811}$ \vspace{0.15in}\\
     \end{enumerate}
     
-    If we declare all genes with score in $[1.9, 2.1]$ significant, $\therefore fdr=\dfrac{0.811 \times 33.8}{74}=0.37$
+    If we declare all genes with score in $[1.9, 2.1]$ significant, $\therefore fdr=\dfrac{0.811 \times 33.8}{74}=0.37$ are expected to be erroneous.
     
     \end{block}
 }
@@ -389,7 +390,7 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
     
     p-values were calculated by $Z$-testing each samples. \vspace{0.2in}\\
     
-    Two FWER methods (Bonferroni, Holm) and Benjamini-Hochberg FDR method were compared.\vspace{0.05in}\\
+    Two FWER methods (Bonferroni, Holm) and Benjamini-Hochberg FDR method, local FDR were compared.\vspace{0.05in}\\
     \href{https://gist.github.com/naturale0/3915e2def589553e91dce99e69d138cc\#file-mcpconverter-py}{[implementation]} 
      \href{https://gist.github.com/naturale0/3915e2def589553e91dce99e69d138cc\#file-mcp_simulation-ipynb}{[notebook]}
     
