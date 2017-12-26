@@ -5,14 +5,19 @@
 \usepackage{enumerate}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{algorithm}
 \usepackage{graphicx}
 \usepackage{csquotes}
+\usepackage[noend]{algpseudocode}
 \graphicspath{ {latex_figures/} }
 \usepackage{booktabs,tabularx}
     \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{graphicx}
 \usepackage{amssymb}
 
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 \title{Review of Multiple Comparison Correction methods\\
 	\Large - From Bonferroni procedure to Efron's Local FDR - }
@@ -23,12 +28,14 @@
 \maketitle
 
 \section{Introduction}
-\flushleft
-    Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) has been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years before Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
+    Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) have been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years before Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
     In this brief report, I would like to review two major concepts in MCP - FWER, FDR - and some of the selected procedures which controls FWER or FDR in certain level. Historical meanings and important proofs were described to better highlight modifications and developments of a statistical concept over time. Simple simulation of multiple testing was also conducted to compare different methods of MCP correction.
 
 \subsection{Multiple comparison problem}
 Multiple comparison problem (MCP), also known as multiple hypothesis tesing problem or multiplicity problem, is a problem which occurs when a family-level hypothesis testing is made based on a set of individual hypotheses. Due to the fact that a family-level type I error rate (family-wise error rate; FWER) is always greater than experiment-level type I error ($\because 1-(1-\alpha)^m > \alpha,$ if $m \geq 2$), an appropriate correction for the error control of family-level hypothesis testing is needed.
+
+\subsection{Adjusted p-values}
+Adjusted p-values are the values that are calculated from original p-values. We can compare adjusted p-values with the level which we control family-level error for. e.g., if an adjusted p-value of a hypothesis $H_i$ is less than or equal to $\alpha_0$, then we can reject $H_i$ while controlling $FWER$ for $\alpha_0$. Unlike p-values, adjusted p-values do not give us the information about type I error probability of that hypothesis.
 
 \subsection{Regression dependency of hypotheses}
 For some family-level error controlling procedure, assumption on dependence structure is needed. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability of corresponding null hypothesis is true does not decreases.
@@ -63,15 +70,101 @@ Notations used to define family-level error concepts mathematically are as descr
 
 
 \section{Family-Wise Error Rate (FWER)}
-Family-wise error rate is 
+Family-wise error rate is a probability that at least one type I error occurs when testing each individual hypothesis in a set. Using previous notations, it can be defined as $P(V \geq 1) = 1 - P(V=0) = E(I_{V \geq 1})$. If FWER is controlled at level $\alpha_0$, then probability of one or more type I error occurs in the set is less than or equal to $\alpha_0$. \par
+    In early works, FWER was controlled by using a specific type of test statistic - $t$, normal, multivariate $t$, or multivariate normal. After Bonferroni procedure was introduced, precedures using p-values from individual testings became dominant.
+
 \subsection{Bonferroni procedure}
-\subsection{Holm-Bonferroni procedure}
+Bonferroni procedure, widely used nowadays, was suggested by Dunn (1961). Dunn originally suggested a method to construct confidence interval in MCP using Bonferroni's inequality, which the procedure was named after. By testing individual hypotheses on level $\alpha/m$, we can control FWER at level $\alpha$. We can prove this with Boole's inequality (1).
+
+\begin{equation}
+\begin{aligned}\label{proof-bonf}
+&\text{By Boole's inequality }P(\cup_{i=1}^{n}E_i)\leq\sum_{i=1}^n P(E_i),\\
+& FWER=P(\cup_{i=1}^{m_0}(p_i\leq\dfrac{\alpha}{m}))\leq\sum_{i=1}^{m_0}P(p_i\leq\dfrac{\alpha}{m})=m_0\dfrac{\alpha}m\leq\alpha
+\end{aligned}
+\end{equation}
+
+Adjusted (or \enquote{Bonferronied}) p-value of $i$th hypothesis is equal to $min(p_i \times m, 1)$.
+
+\begin{algorithm}
+\caption{Bonferroni Procedure}\label{bonf}
+\begin{algorithmic}[1]
+\Procedure{Bonferroni}{}
+\State $\textit{pvals} \gets \text{array of p-values}$
+\State $\textit{adj\_pvals} \gets \text{empty array of length same as } \textit{pvals}$
+\BState \text{\textbf{For} \textit{i} in 1:\textit{length(pvals})}:
+\State {$adj\_pvals[i] \gets pvals[i] * length(pvals)$}
+\If {$adj\_pvals[i] \leq \alpha$} {reject $i$th hypothesis}
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Dunn simplified MCP correction in two major ways. (i) Dunn introduced a control procedure which is based on individual p-values. It is possible to conduct any kind of multiple testing, even it does not uses specific type of test statistic. (ii) Bonferroni procedure is remarkably computationally efficient. By setting the procedure as \textit{algorithm 1}, Bonferroni correction only costs $O(n)$. In many big-data analysis where high complexity algorithms are not feasible to use, Bonferroni procedure can help. Also, Bonferroni procedure does not require the assumption of regression dependence. However, excessive loss in testing power in Bonferroni procedure led to the development of stepwise FWER controlling procedures.
+
+\subsection{Holm procedure}
+In addition to improve power of test while controlling for same level of FWER, Holm (1979) designed a step-up procedure. In fact, it is one of the first stepwise algorithm for MCP correction. Holm procedure can be conducted as follows. 
+\begin{enumerate}
+  \item Sort p-values in increasing order: $p_{(1)}, p_{(2)}, ..., p_{(m)}$.
+    \begin{enumerate}[-]
+    \item Each of the p-value corresponds to $H_{0_{(1)}}, H_{0_{(2)}}, ..., H_{0_{(m)}}$. 
+    \end{enumerate}
+  \item Find the smallest $j$, in which $p_{(j)} > \dfrac{\alpha}{m-j+1}$.
+  \item Reject $H_{0_{(k)}}$'s, where $k=1, 2, ..., (j-1)$.
+\end{enumerate}
+
+By rejecting hypotheses with Holm procedure, we can control FDR for level $\alpha_0$ (2).
+
+\begin{equation}
+\begin{aligned}\label{proof-bonf}
+& \text{If the smallest index which satisfies } p_{(j)} > \dfrac{\alpha}{m-j+1} \text{ is } j \text{, then} \\
+& m-j+1 \geq m_0,\text{ } \dfrac{1}{m-j+1} \leq \dfrac{1}{m_0} \text{,  }
+p_{(j-1)} \leq \dfrac{\alpha}{m-j+2} \leq \dfrac{\alpha}{m_0}.\\
+& \therefore \text{By Boole's inequality, } FWER=P(\cup_{i=1}^{m_0}(p_i\leq\dfrac{\alpha}{m_0}))\leq\sum_{i=1}^{m_0}P(p_i\leq\dfrac{\alpha}{m_0})=\alpha\\
+\end{aligned}
+\end{equation}
+
+Adjusted p-value of $i$th hypothesis for Holm procedure is equal to $min(p_i \times (m-i+1), 1)$. \par
+    As Holm procedure compares individual p-values to $\dfrac{\alpha}{m}, \dfrac{\alpha}{m-1}, ..., \dfrac{\alpha}{1}$ instead of uniform level $\dfrac{\alpha}{m}$ as in Bonferroni procedure, Holm procedure is uniformly more powerful than Bonferroni procedure, though power gain is little. Holm procedure also does not assume specific regression dependence of hypotheses.
+
+
 \subsection{Hochberg procedure}
+Hochberg (1988) sharpened Holm's method to be more powerful. In his two-paged paper, he modified Holm procedure and suggested step-up algorithm with similar rejection critetion. 
+\begin{enumerate}
+  \item Sort p-values in increasing order: $p_{(1)}, p_{(2)}, ..., p_{(m)}$.
+  \item Find the largest $j$, in which $p_{(j)} \leq \dfrac{\alpha}{m-j+1}$.
+  \item Reject $H_{0_{(k)}}$'s, where $k=1, 2, ..., j$.
+\end{enumerate}
+    With a little modification, Hochberg procedure is uniformly more powerful than Holm procedure. However, this algorithm requires non-negative regression dependence assumption to properly control FWER at certain level. Although testing power increase in Hochberg procedure is almost negligible, it later inspired Hochberg to develop a step-up FDR controlling procedure.
+
 \vspace{0.2in}
 
 
 \section{False Discovery Rate (FDR)}
+While the field concentrated on improving testing power of FWER controlling method, some insisted to develop a new concept of family-level error, other than FWER. FWER has drawbacks: (i) Controlling for FWER has much less power than controlling for per comparison error. (ii) In many cases it is not needed to control FWER in strong manner made. Saville is the one who recommended using per comparison error rate (PCER) than FWER, because of these reasons. \par
+    Inspired by the fact that the ratio of the number of false rejection to the number of total rejection might be a useful error rate to control for, Benjamini and Hochberg (1955) introduced a seminal concept, false discovery rate (FDR). FDR is defined as \enquote{expectation of ratio of the number of erroneous rejection to the number of total rejection}, which can be denoted as $E(Q)=E(V/R)=E(V/(S+V))$. By defining FDR as $E(Q)$, relationship with FWER can be derived.
+    \begin{enumerate}
+    \item if $m_0=m$, then FDR $=$ FWER. \\
+      $\because s=0$, $v=r$. $P(V \geq 1)= E(Q)$
+    \item if $m_0<m$, then FDR $\leq$ FWER. \\
+      $\because v>0$, $Q \leq I_{V \geq 1}$, $E(Q) \leq E(I_{V \geq 1}) = P(V \geq 1)$
+    \end{enumerate}
+Because of this relationship, controlling for FWER also controls FDR in strong manner. In contrary, controlling for FDR weakly controls FWER (does not assure that FWER is also being controlled).
+
 \subsection{Benjamini-Hochberg (B-H) procedure}
+Alongside the introduction of FDR, Benjamini and Hochberg developed a step-up procedure to easily control FDR at certain level $q^*$.
+\begin{enumerate}
+  \item Sort p-values in increasing order: $p_{(1)}, p_{(2)}, ..., p_{(m)}$.
+  \item Find the largest $j$, in which $p_{(j)} \leq \dfrac{j}{m}q^*$.
+  \item Reject $H_{0_{(k)}}$'s, where $k=1, 2, ..., j$.
+\end{enumerate}
+Unlike Hochberg procedure for FWER control, 
+
+
+
+
+
+
+
 \subsection{Benjamini-Yekutieli (B-Y) procedure}
 \subsection{Brief introduction to local FDR}
 \vspace{0.2in}

@@ -1,14 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Multiple comparison problem}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Regression dependency of hypotheses}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.3}{Notations}{section.1}% 4
-\BOOKMARK [1][-]{section.2}{Family-Wise Error Rate \(FWER\)}{}% 5
-\BOOKMARK [2][-]{subsection.2.1}{Bonferroni procedure}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.2}{Holm-Bonferroni procedure}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.3}{Hochberg procedure}{section.2}% 8
-\BOOKMARK [1][-]{section.3}{False Discovery Rate \(FDR\)}{}% 9
-\BOOKMARK [2][-]{subsection.3.1}{Benjamini-Hochberg \(B-H\) procedure}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.2}{Benjamini-Yekutieli \(B-Y\) procedure}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.3}{Brief introduction to local FDR}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{Discussions - Simulation and Comparisons}{}% 13
-\BOOKMARK [1][-]{section.5}{References}{}% 14
+\BOOKMARK [2][-]{subsection.1.2}{Adjusted p-values}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Regression dependency of hypotheses}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Notations}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Family-Wise Error Rate \(FWER\)}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Bonferroni procedure}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Holm procedure}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Hochberg procedure}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{False Discovery Rate \(FDR\)}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Benjamini-Hochberg \(B-H\) procedure}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Benjamini-Yekutieli \(B-Y\) procedure}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Brief introduction to local FDR}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Discussions - Simulation and Comparisons}{}% 14
+\BOOKMARK [1][-]{section.5}{References}{}% 15
