@@ -344,23 +344,28 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
     \begin{block}{Empirical bayes method}
       \begin{enumerate}
         \item Estimate prior distribution using the whole data
-        \item Use 1. as a prior for each individual estimate
+        \item Use 1. as a prior for each individual estimate\vspace{0.1in}\\
       \end{enumerate}
     \end{block}
+    \textbf{Local FDR gives answer to the question: \\"How many decisions are wrong in the local area of this hypothesis of interest?"}
 }
 
 \frame
 {
     \frametitle{Local FDR}
-    Local FDR is defined as: $fdr(Z)=\dfrac{p_0f_0(Z)}{f(Z)}$. \vspace{0.07in}\\
+    Local FDR is defined as: $fdr(Z)=\dfrac{p_0f_0(Z)}{f(Z)}$. \\
     \begin{flalign*}
     &p_0=1-p_1=\text{ probability that a null is true.}\\
     &f_0(z)=\text{ the density of true nulls.}\\
     &f_1(z)=\text{ the density of false nulls.}\\
     &f(z)=p_0f_0(z) + p_1f_1(z)
     \end{flalign*}
-    $fdr(Z)$ is the posterior probability that a null is true.\vspace{0.1in}\\
-    \textbf{Local FDR gives answer to the question: \\"How many decisions are wrong in the local area of this hypothesis of interest?"}
+    $\therefore fdr(Z)$ is the posterior probability that a null is true.\vspace{0.21in}\\
+    
+    In large-scale testing, we usually assume a large $p_0 \geq 0.9$.\vspace{0.05in}\\
+    We can use $Poisson$ GLM to estimate marginal $f(Z)$.\vspace{0.05in}\\
+    We also can crudely assume $N(0, 1)$ as $f_0(Z)$.
+    
 }
 
 \frame
@@ -388,9 +393,10 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
     \begin{block}{Simulation scheme}
     1,000 samples were generated from $N(0, 1)$, \\and 1,000 other samples were generated from $N(3, 1)$\vspace{0.12in}.\\
     
+    \includegraphics[scale=0.3]{samples}\\
     p-values were calculated by $Z$-testing each sample. \vspace{0.2in}\\
     
-    Two FWER methods (Bonferroni, Holm) and Benjamini-Hochberg FDR method, local FDR were compared.\vspace{0.05in}\\
+    Two FWER methods (Bonferroni, Holm) and Benjamini-Hochberg FDR method, Efron's local FDR method were compared.\vspace{0.05in}\\
     \href{https://gist.github.com/naturale0/3915e2def589553e91dce99e69d138cc\#file-mcpconverter-py}{[implementation]} 
      \href{https://gist.github.com/naturale0/3915e2def589553e91dce99e69d138cc\#file-mcp_simulation-ipynb}{[notebook]}
     
@@ -450,15 +456,14 @@ Bonferroni procedure uses \underline{per-hypothesis p-values} to control FWER, r
     \frametitle{\LARGE References}
     \scriptsize
     \begin{itemize}
-    \item Savin, N. (1980). "The Bonferroni and the Scheff\'e Multiple Comparison Procedures". The Review of Economic Studies, 47(1), 255-273\\
-\item Weisstein, E. "Bonferroni Inequalities". From \href{http://mathworld.wolfram.com/BonferroniInequalities.html}{MathWorld - A Wolfram Web Resource}, retrieved at Dec. 2017
 \item Holm, S. (1979). "A Simple Sequentially Rejective Multiple Test Procedure". Scandinavian Journal of Statistics, 6(2), 65-70\\
 \item Abdi, H. (2010). "Holm's Sequential Bonferroni Procedure". University of Texas at Dallas\\
 \item Aickin, M., Gensler, H. (1996). "Adjusting for multiple testing when reporting research results: the Bonferroni vs Holm methods". American Journal of Public Health, 86(5), 726-728\\
 \item Benjamini, Y., Hochberg, Y. (1995). "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing". Journal of the Royal Statistical Society. Series B (Methodological), 57(1), 289-300\\
 \item Benjamini, Y., Yekutieli, D. (2001). "The control of the false discovery rate in multiple testing under dependency". Ann. Statist. 29(4), 1165-1188\\
 \item Robinson, D. (2015). "Understanding empirical Bayes estimation (using baseball statistics)". From \href{http://varianceexplained.org/r/empirical\_bayes\_baseball/}{Variance Explained}, retrieved at Dec. 2017 \\
-\item Efron, B., Tibshirani, R., Storey, J., Tusher, V. (2001). "Empirical Bayes Analysis of a Microarray Experiment". Technical Report. 216\\
+\item Efron, B., Tibshirani, R., Storey, J., Tusher, V. (2001). "Empirical Bayes Analysis of a Microarray Experiment". Stanford University Technical Report. 216\\
+\item Efron, B. (2005). "Local False Discovery Rates". Stanford University Technical Report. 234\\
     \end{itemize}
 }
 
