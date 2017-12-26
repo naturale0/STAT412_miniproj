@@ -1,0 +1,95 @@
+\documentclass[a4paper, 11pt, oneside]{article}
+\usepackage[doublespacing]{setspace}
+\usepackage[scale=0.75, twoside, bindingoffset=5mm]{geometry}
+\usepackage[affil-it]{authblk}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\graphicspath{ {latex_figures/} }
+\usepackage{booktabs,tabularx}
+    \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\title{Review of Multiple Comparison Correction methods\\
+	\Large - From Bonferroni procedure to Efron's Local FDR - }
+\author{2014140089 Park, Si Hyung}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\flushleft
+    Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) has been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years before Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
+    In this brief report, I would like to review two major concepts in MCP - FWER, FDR - and some of the selected procedures which controls FWER or FDR in certain level. Historical meanings and important proofs were described to better highlight modifications and developments of a statistical concept over time. Simple simulation of multiple testing was also conducted to compare different methods of MCP correction.
+
+\subsection{Multiple comparison problem}
+Multiple comparison problem (MCP), also known as multiple hypothesis tesing problem or multiplicity problem, is a problem which occurs when a family-level hypothesis testing is made based on a set of individual hypotheses. Due to the fact that a family-level type I error rate (family-wise error rate; FWER) is always greater than experiment-level type I error ($\because 1-(1-\alpha)^m > \alpha,$ if $m \geq 2$), an appropriate correction for the error control of family-level hypothesis testing is needed.
+
+\subsection{Regression dependency of hypotheses}
+For some family-level error controlling procedure, assumption on dependence structure is needed. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability of corresponding null hypothesis is true does not decreases.
+
+\subsection{Notations}
+\begin{table}[ht]
+    \small
+    \setlength{\tabcolsep}{3pt}
+\centering
+\begin{tabularx}{.7\hsize}{@{}l LLL@{}}
+    \toprule
+ & Declared as non-significant  & Declared as significant & Total \\
+    \midrule
+True $H_0$ 
+    & $U$ 
+        & $V$ 
+            & $m_0$ \\
+False $H_0$ 
+    & $T$ 
+        & $S$
+            &  $m_1=m-m_0$ \\
+Total & $m-R$ 
+        & $R$ 
+            & $m$ \\
+    \bottomrule
+\end{tabularx}
+\caption{notation of the number of hypotheses in corresponding to each cell}
+    \end{table}
+
+Notations used to define family-level error concepts mathematically are as described on Table 1. This notation follows that of Benjamini and Hochberg (1995). Total $m$ hypotheses in a set is being tested in this situation. $m_0 \leq m$ hypotheses are true null. Note that $R$, the number of rejected hypotheses, is an observable random variable while $U$, $V$, $T$, $S$ are unobservable random variables.
+\vspace{0.2in}
+
+
+\section{Family-Wise Error Rate (FWER)}
+Family-wise error rate is 
+\subsection{Bonferroni procedure}
+\subsection{Holm-Bonferroni procedure}
+\subsection{Hochberg procedure}
+\vspace{0.2in}
+
+
+\section{False Discovery Rate (FDR)}
+\subsection{Benjamini-Hochberg (B-H) procedure}
+\subsection{Benjamini-Yekutieli (B-Y) procedure}
+\subsection{Brief introduction to local FDR}
+\vspace{0.2in}
+
+\section{Discussions - Simulation and Comparisons}
+\vspace{0.2in}
+
+\section{References}
+ Holm, S. (1979). "A Simple Sequentially Rejective Multiple Test Procedure". Scandinavian Journal of Statistics, 6(2), 65-70 \vspace{0.06in}\\
+ Abdi, H. (2010). "Holm's Sequential Bonferroni Procedure". University of Texas at Dallas \vspace{0.06in}\\
+ Aickin, M., Gensler, H. (1996). "Adjusting for multiple testing when reporting research results: the Bonferroni vs Holm methods". American Journal of Public Health, 86(5), 726-728 \vspace{0.06in}\\
+ Benjamini, Y., Hochberg, Y. (1995). "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing". Journal of the Royal Statistical Society. Series B (Methodological), 57(1), 289-300 \vspace{0.06in}\\
+ Benjamini, Y., Yekutieli, D. (2001). "The control of the false discovery rate in multiple testing under dependency". Ann. Statist. 29(4), 1165-1188 \vspace{0.06in}\\
+ Robinson, D. (2015). "Understanding empirical Bayes estimation (using baseball statistics)". From \href{http://varianceexplained.org/r/empirical\_bayes\_baseball/}{Variance Explained}, retrieved at Dec. 2017 \vspace{0.06in}\\
+ Efron, B., Tibshirani, R., Storey, J., Tusher, V. (2001). "Empirical Bayes Analysis of a Microarray Experiment". Stanford University Technical Report. 216 \vspace{0.06in}\\
+ Efron, B. (2005). "Local False Discovery Rates". Stanford University Technical Report. 234 \vspace{0.06in}\\
+
+
+
+
+\end{document}  
