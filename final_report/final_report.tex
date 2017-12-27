@@ -30,7 +30,7 @@
 \maketitle
 
 \section{Introduction}
-    Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) have been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years before Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
+    Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) have been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years until Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
     In this brief report, I would like to review two major concepts in MCP - FWER, FDR - and some of the selected procedures which control FWER or FDR in certain level. Historical meanings and important proofs were described to better highlight modifications and developments of a statistical concept over time. Keep in mind that many of the proofs written in this review were simplified to achieve intuitive delivery of the concept. Simple simulation of multiple testing was also conducted to compare different methods of MCP correction.
 
 \subsection{Multiple comparison problem}
@@ -40,7 +40,7 @@ Multiple comparison problem (MCP), also known as multiple hypothesis tesing prob
 Adjusted p-values are the values that are calculated from original p-values. We can compare adjusted p-values with the level which we control family-level error for. For example, if an adjusted p-value of a hypothesis $H_i$ is less than or equal to $\alpha_0$, then we can reject $H_i$ while controlling $FWER$ for $\alpha_0$. Unlike p-values, adjusted p-values do not give us the information about the type I error probability of that hypothesis.
 
 \subsection{Regression dependency of hypotheses}
-For some family-level error controlling procedure, assumption on dependence structure is needed. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in a set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability that corresponding null hypothesis is true does not decreases.
+For some family-level error controlling procedure, assumption on dependence structure is necessary. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in a set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability that corresponding null hypothesis is true does not decrease.
 
 \subsection{Notations}
 \begin{table}[ht]
@@ -64,10 +64,10 @@ Total & $m-R$
             & $m$ \\
     \bottomrule
 \end{tabularx}
-\caption{notation of the number of hypotheses in corresponding to each cell}
+\caption{notation of the number of hypotheses corresponding to each cell}
     \end{table}
 
-Notations used to define family-level error concepts mathematically are as described on Table 1. This notation follows that of Benjamini and Hochberg (1995). Total $m$ hypotheses in a set is being tested in this situation. $m_0 \leq m$ hypotheses are true null. Note that $R$, the number of rejected hypotheses, is an observable random variable while $U$, $V$, $T$, $S$ are unobservable random variables.
+Notations used to mathematically define family-level error concepts are as described on Table 1. This notation follows that of Benjamini and Hochberg (1995). Total $m$ hypotheses in a set are being tested in this situation. $m_0 \leq m$ hypotheses are true null. Note that $R$, the number of rejected hypotheses, is an observable random variable while $U$, $V$, $T$, $S$ are unobservable random variables.
 \vspace{0.2in}
 
 
@@ -76,7 +76,7 @@ Family-wise error rate is a probability that at least one of the type I error oc
     In early works, FWER was controlled by using a specific type of test statistic - $t$, normal, multivariate $t$, or multivariate normal. After Bonferroni procedure was introduced, precedures using p-values from individual testings became dominant.
 
 \subsection{Bonferroni procedure}
-Bonferroni procedure, widely used nowadays, was suggested by Dunn (1961). Dunn originally suggested a method to construct confidence interval in MCP using Bonferroni's inequality, which the procedure was named after. By testing individual hypotheses on level $\alpha/m$, we can control FWER at level $\alpha$. We can prove this with Boole's inequality (1).
+Bonferroni procedure, widely used nowadays, was suggested by Dunn (1961). Dunn originally suggested a method to construct confidence interval in MCP using Bonferroni's inequality, of which the procedure was named after. By testing individual hypotheses on level $\alpha/m$, we can control FWER at level $\alpha$. We can prove this with Boole's inequality (1).
 
 \begin{equation}
 \begin{aligned}\label{proof-bonf}
@@ -142,8 +142,8 @@ Hochberg (1988) sharpened Holm's method to be more powerful. In his two-paged pa
 
 
 \section{False Discovery Rate (FDR)}
-While the field concentrated on improving testing power of FWER controlling method, some insisted to develop a new concept of family-level error, other than FWER. FWER has drawbacks: (i) Controlling for FWER has much less power than controlling for experiment-wise error. (ii) In many cases it is not necessary to control FWER in strong manner made. Saville is the one who recommended using per comparison error rate (PCER) than FWER, because of these reasons. \par
-    Inspired by the fact that the ratio of the number of false rejection to the number of total rejection might be a useful error rate to control for, Benjamini and Hochberg (1995) introduced a seminal concept, false discovery rate (FDR). FDR is defined as \enquote{the expectation of the ratio of the number of erroneous rejection to the number of total rejection}, which can be denoted as $E(Q)=E(V/R)=E(V/(S+V))$. By defining FDR as $E(Q)$, relationship with FWER can be derived.
+While the field concentrated on improving testing power of FWER controlling method, some insisted to develop a new concept of family-level error, other than FWER. FWER has drawbacks: (i) Controlling for FWER has much less power than controlling for experiment-wise error. (ii) In many cases it is not necessary to control FWER in strong manner. Saville is the one who recommended using per comparison error rate (PCER) than FWER, because of these reasons. \par
+    Inspired by the fact that the ratio of the number of false rejection to the number of total rejection might be a useful error rate to control for, Benjamini and Hochberg (1995) introduced a seminal concept, false discovery rate (FDR). FDR is defined as \enquote{the expectation of the ratio of the number of erroneous rejection to the number of total rejection}, which can be denoted as $E(Q)=E(V/R)=E(V/(S+V))$. By defining FDR as $E(Q)$, relationship between FDR and FWER can be derived.
     \begin{enumerate}
     \item if $m_0=m$, then FDR $=$ FWER. \\
       $\because s=0$, $v=r$. $P(V \geq 1)= E(Q)$
