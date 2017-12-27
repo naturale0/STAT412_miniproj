@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.24)  27 DEC 2017 13:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.24)  27 DEC 2017 14:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,16 +400,15 @@ LaTeX Font Info:    ... okay on input line 28.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* bindingoffset: 14.22636pt
-* modes: twoside 
-* h-part:(L,W,R)=(58.32816pt, 437.46112pt, 87.49223pt)
+* modes: 
+* h-part:(L,W,R)=(74.68848pt, 448.1309pt, 74.68849pt)
 * v-part:(T,H,B)=(84.50467pt, 633.78513pt, 126.75705pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=437.46112pt
+* \textwidth=448.1309pt
 * \textheight=633.78513pt
-* \oddsidemargin=0.28453pt
-* \evensidemargin=15.22224pt
+* \oddsidemargin=2.41849pt
+* \evensidemargin=2.41849pt
 * \topmargin=-24.76532pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -423,8 +422,8 @@ LaTeX Font Info:    ... okay on input line 28.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -488,66 +487,73 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 32.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 90.
- [3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
-has been already used, duplicate ignored
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2pdfTe
+X warning (ext4): destination with the same identifier (name{table.1}) has been
+ already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.104 
-      ]
+l.71 
+     ]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 90.
+ [3]
 
 LaTeX Warning: The counter will not be printed.
              The label is: - on input line 109.
 
-[4] [5] [6] [7] [8]
-<../latex_figures/adj_pval_report.png, id=136, 511.9125pt x 376.40625pt>
+[4] [5]
+Overfull \hbox (16.60997pt too wide) in paragraph at lines 162--163
+\OT1/cmr/m/n/10.95 Unlike Hochberg pro-ce-dure for FWER con-trol which used hy-
+per-bolic form of con-stant ($[]$),
+ []
+
+[6] [7]
+<../latex_figures/adj_pval_report.png, id=132, 511.9125pt x 376.40625pt>
 File: ../latex_figures/adj_pval_report.png Graphic file (type png)
 
 <use ../latex_figures/adj_pval_report.png>
 Package pdftex.def Info: ../latex_figures/adj_pval_report.png used on input lin
-e 208.
+e 209.
 (pdftex.def)             Requested size: 204.76137pt x 150.55983pt.
 
-<../latex_figures/pval-lfdr_report.png, id=138, 502.87875pt x 376.40625pt>
+<../latex_figures/pval-lfdr_report.png, id=134, 502.87875pt x 376.40625pt>
 File: ../latex_figures/pval-lfdr_report.png Graphic file (type png)
 
 <use ../latex_figures/pval-lfdr_report.png>
 Package pdftex.def Info: ../latex_figures/pval-lfdr_report.png used on input li
-ne 209.
+ne 210.
 (pdftex.def)             Requested size: 201.14793pt x 150.55983pt.
- [9pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
- has been already used, duplicate ignored
+ [8] [9pdfTeX warning (ext4): destination with the same identifier (name{figure
+.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.218 \section
-              {References} <../latex_figures/adj_pval_report.png> <../latex_fig
-ures/pval-lfdr_report.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 219--227
+l.218 
+       <../latex_figures/adj_pval_report.png> <../latex_figures/pval-lfdr_repor
+t.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 221--229
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
 [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
  (./final_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
 Package rerunfilecheck Info: File `final_report.out' has not changed.
 (rerunfilecheck)             Checksum: 2E93DD7F2690EA18CB751F419163B750;1036.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 231.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
  ) 
 Here is how much of TeX's memory you used:
  8217 strings out of 492995
  118275 string characters out of 6132703
- 228960 words of memory out of 5000000
+ 227905 words of memory out of 5000000
  11605 multiletter control sequences out of 15000+600000
  15149 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -571,7 +577,7 @@ ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on final_report.pdf (10 pages, 266913 bytes).
+Output written on final_report.pdf (10 pages, 266927 bytes).
 PDF statistics:
  229 PDF objects out of 1000 (max. 8388607)
  192 compressed objects within 2 object streams

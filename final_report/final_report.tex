@@ -1,6 +1,6 @@
 \documentclass[a4paper, 11pt, oneside]{article}
 \usepackage[doublespacing]{setspace}
-\usepackage[scale=0.75, twoside, bindingoffset=5mm]{geometry}
+\usepackage[scale=0.75]{geometry}
 \usepackage[affil-it]{authblk}
 \usepackage{enumerate}
 \usepackage{hyperref}
@@ -149,7 +149,8 @@ While the field concentrated on improving testing power of FWER controlling meth
     \item if $m_0<m$, then FDR $\leq$ FWER. \\
       $\because v>0$, $Q \leq I_{V \geq 1}$, $E(Q) \leq E(I_{V \geq 1}) = P(V \geq 1)$
     \end{enumerate}
-Because of this relationship, controlling for FWER also controls FDR in strong manner. In contrary, controlling for FDR weakly controls FWER (does not assure that FWER is also being controlled).
+Because of this relationship, controlling for FWER also controls FDR in strong manner. In contrary, controlling for FDR weakly controls FWER (does not assure that FWER is also being controlled). \par
+    Due to the high testing power, it is recommended to use FDR in following cases. (i) When the family-level conclusion is not sensitive to failures in individual testing. (ii) When conducting exploratory analysis, or screening to find as many potential discoveries as possible.
 
 \subsection{Benjamini-Hochberg (B-H) procedure}
 Alongside the introduction of FDR, Benjamini and Hochberg developed a step-up procedure to easily control FDR at certain level $q^*$.
@@ -213,9 +214,10 @@ A simple simulation was conducted to compare different kinds of MCP correction p
 Controlling for FDR has much more power gain than Bonferroni or Holm FWER method (Figure 1, left). While only ~110 rejections were made in FWER controlling procedures, 739 rejections were made in B-H FDR procedure. ratios of false rejection to total rejection were .009, .009, .014 respectively, suggesting that B-H procedure appropriately controlled FDR in desired manner. \par
     Local FDRs have generally higher value than corresponding p-values (Figure 1, right), indicating that expected false rejection rate in an interval which contains a hypothesis of interest is usually larger than type I error rate. While the difference was quite large, it is possible to lower the values of local FDR by accurately estimating $p_0$. With $p_0=0.5$, the result was much more reasonable in this generated dataset, considering the correspondence to individual p-values.
 
-\vspace{0.2in}
+\pagebreak
 
 \section{References}
+\setstretch{1}
  Holm, S. (1979). "A Simple Sequentially Rejective Multiple Test Procedure". Scandinavian Journal of Statistics, 6(2), 65-70 \vspace{0.06in}\\
  Abdi, H. (2010). "Holm's Sequential Bonferroni Procedure". University of Texas at Dallas \vspace{0.06in}\\
  Aickin, M., Gensler, H. (1996). "Adjusting for multiple testing when reporting research results: the Bonferroni vs Holm methods". American Journal of Public Health, 86(5), 726-728 \vspace{0.06in}\\
