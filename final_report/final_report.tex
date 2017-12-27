@@ -164,7 +164,7 @@ Unlike the Hochberg procedure for FWER control which used hyperbolic form of con
 
 
 \subsection{Benjamini-Yekutieli (B-Y) procedure}
-Benjamini and Yekutieli introduced a modified version of the B-H procedure, which can handle the situation under arbitrary dependency. By comparing ordered p-value $p_{(j)}$ to $\dfrac{j}{m \cdot c(m)}q^*$ (under non-negative dependece $c(m)=1$ otherwise $=\sum_{j=1}^m \dfrac{1}{j}$), instead of $\dfrac{j}{m \cdot c(m)}q^*$, the B-Y procedure can control FDR at desired level even under negative or arbitrary regression dependence (3), (5).
+Benjamini and Yekutieli introduced a modified version of the B-H procedure, which can handle the situation under arbitrary dependency. By comparing ordered p-value $p_{(j)}$ to $\dfrac{j}{m \cdot c(m)}q^*$ (under non-negative dependece $c(m)=1$ otherwise $=\sum_{j=1}^m \dfrac{1}{j}$), instead of $\dfrac{j}{m}q^*$, the B-Y procedure can control FDR at desired level even under negative or arbitrary regression dependence (3), (5).
 
 \begin{equation}
 \begin{aligned}\label{proof-by1}
