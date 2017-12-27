@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{graphicx}
+\usepackage{textcomp}
 \usepackage{csquotes}
 \usepackage[noend]{algpseudocode}
 \graphicspath{ {../latex_figures/} }
@@ -191,7 +192,7 @@ E(Q)&=\sum_{i=1}^{m_0} \sum_{k=1}^m \dfrac{1}{k}P(p_i \leq q_k \cap C_k^{(i)}) =
 
 \subsection{Brief introduction to local FDR}
 While control procedure for family-level of FDR has been developed, nothing described an expected false rejection ratio of an individual hypothesis in the set. FDR controlling procedures utilized experiment-wise p-values, which were probability of the type I error, not the expected rate of false rejection. \par
-    To report the expected false rejection rate of individual gene of interest from microarray data, Efron (2001) grafted empirical bayes approach to MCP. In empricial bayes method, hyperparameters of prior distribution are fitted using the observed data, unlike standard bayes method which sets hyperparameters beside the data. Efron defined local-level of FDR (local FDR) as $fdr(z)=\dfrac{p_0 f_0(z)}{f(z)}$, where $z$ is the domain of the densities (observed data), $p_0$ is a prior probability that a hypothesis (null) is true, $f_0(Z)$ is the density of true nulls, $f_1(Z)$ is the density of false nulls, and $f(Z)=p_0f_0(Z) + p_1f_1(Z)$ is the joint density of true and false nulls, which can be expressed as a mixture of true and false null densities. For crude local FDR inference in large sample, we can use $p_0 \geq 0.9$, $f_0(Z) \stackrel{d}{=} N(0, 1)$, and estimate $f(Z)$ with $Poisson$ GLM.
+    To report the expected false rejection rate of individual gene of interest from microarray data, Efron (2001) grafted empirical bayes approach to MCP. In empricial bayes method, hyperparameters of prior distribution are fitted using the observed data, unlike standard bayes method which sets hyperparameters beside the data. Efron defined local-level of FDR (local FDR) as $fdr(z)=\dfrac{p_0 f_0(z)}{f(z)}$, where $z$ is the domain of the densities (observed data), $p_0$ is a prior probability that a hypothesis (null) is true, $f_0(Z)$ is the density of true nulls, $f_1(Z)$ is the density of false nulls, and $f(Z)=p_0f_0(Z) + p_1f_1(Z)$ is the joint density of true and false nulls, which can be expressed as a mixture of true and false null densities. For crude local FDR inference in the large sample, we can use $p_0 \geq 0.9$, $f_0(Z) \stackrel{d}{=} N(0, 1)$, and estimate $f(Z)$ with $Poisson$ GLM.
 
 \vspace{0.2in}
 
@@ -211,8 +212,9 @@ A simple simulation was conducted to compare different kinds of MCP correction p
 \caption{simple Z-test simulation for comparison of MCP correction methods}
 \end{figure}
 
-Controlling for FDR has much more power gain than Bonferroni or Holm FWER method (Figure 1, left). While only \~{}110 rejections were made in FWER controlling procedures, 739 rejections were made in the B-H FDR procedure. Ratios of false rejection to total rejection were .009, .009, .014 respectively, suggesting that the B-H procedure appropriately controlled FDR in desired manner. \par
-    Local FDRs have generally higher value than corresponding p-values (Figure 1, right), indicating that the expected false rejection rate in an interval which contains a hypothesis of interest is usually larger than the type I error rate. While the difference was quite large, it is possible to lower the values of local FDR by accurately estimating $p_0$. With $p_0=0.5$, the result was much more reasonable in this generated dataset, considering the correspondence to individual p-values.
+Controlling for FDR has much more power gain than Bonferroni or Holm FWER method (Figure 1, left). While only $\sim$110 rejections were made in FWER controlling procedures, 739 rejections were made in the B-H FDR procedure. Ratios of false rejection to total rejection were .009, .009, .014 respectively, suggesting that the B-H procedure appropriately controlled FDR in desired manner. \par
+    Local FDRs have generally higher value than corresponding p-values (Figure 1, right), indicating that the expected false rejection rate in an interval which contains a hypothesis of interest is usually larger than the type I error rate. While the difference was quite large, it is possible to lower the values of local FDR by accurately estimating $p_0$. With $p_0=0.5$, the result was much more reasonable in this generated dataset, considering the correspondence to individual p-values. \par
+    All codes were uploaded to \href{https://gist.github.com/naturale0/3915e2def589553e91dce99e69d138cc}{GitHub Gist}. Whole process was implemented with Python 2.7. 'Numpy', 'SciPy' and 'Pandas' packages were used to implement a Python class 'MCPConverter'. 'Statsmodels' package was used to estimate Efron's local FDR.
 
 \pagebreak
 
