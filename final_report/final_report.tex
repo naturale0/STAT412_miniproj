@@ -20,7 +20,7 @@
 \makeatother
 
 \title{Review of Multiple Comparison Correction methods\\
-	\Large - From Bonferroni procedure to Efron's Local FDR - }
+	\Large - From the Bonferroni procedure to Efron's Local FDR - }
 \author{2014140089 Park, Si Hyung}
 %\affil{Division of Life Sciences, Korea University}
 %\date{}
@@ -30,16 +30,16 @@
 
 \section{Introduction}
     Ever since works on multiple comparison problem (MCP) were started by Tukey (1949) and Scheff\'e (1953), who have both utilized $t-$statistic for pairwise sample mean comparisons, numerous procedures for controlling family-wise error rate (FWER) have been developed. Achieving higher testing power while controlling FWER for the same level has especially been a major concern in the field of MCP, rulling the field for almost 35 years before Benjamini and Hochberg suggested the concept of false discovery rate (FDR) in 1995. \par
-    In this brief report, I would like to review two major concepts in MCP - FWER, FDR - and some of the selected procedures which controls FWER or FDR in certain level. Historical meanings and important proofs were described to better highlight modifications and developments of a statistical concept over time. Keep in mind that many of the proofs written in this review were simplified to achieve intuitive delivery of the concept. Simple simulation of multiple testing was also conducted to compare different methods of MCP correction.
+    In this brief report, I would like to review two major concepts in MCP - FWER, FDR - and some of the selected procedures which control FWER or FDR in certain level. Historical meanings and important proofs were described to better highlight modifications and developments of a statistical concept over time. Keep in mind that many of the proofs written in this review were simplified to achieve intuitive delivery of the concept. Simple simulation of multiple testing was also conducted to compare different methods of MCP correction.
 
 \subsection{Multiple comparison problem}
-Multiple comparison problem (MCP), also known as multiple hypothesis tesing problem or multiplicity problem, is a problem which occurs when a family-level hypothesis testing is made based on a set of individual hypotheses. Due to the fact that a family-level type I error rate (family-wise error rate; FWER) is always greater than experiment-level type I error ($\because 1-(1-\alpha)^m > \alpha,$ if $m \geq 2$), an appropriate correction for the error control of family-level hypothesis testing is needed.
+Multiple comparison problem (MCP), also known as multiple hypothesis tesing problem or multiplicity problem, is a problem which occurs when a family-level hypothesis testing is made based on a set of individual hypotheses. Due to the fact that a family-level type I error rate (family-wise error rate; FWER) is always greater than an experiment-level type I error ($\because 1-(1-\alpha)^m > \alpha,$ if $m \geq 2$), an appropriate correction for the error control of family-level hypothesis testing is needed.
 
 \subsection{Adjusted p-values}
-Adjusted p-values are the values that are calculated from original p-values. We can compare adjusted p-values with the level which we control family-level error for. e.g., if an adjusted p-value of a hypothesis $H_i$ is less than or equal to $\alpha_0$, then we can reject $H_i$ while controlling $FWER$ for $\alpha_0$. Unlike p-values, adjusted p-values do not give us the information about type I error probability of that hypothesis.
+Adjusted p-values are the values that are calculated from original p-values. We can compare adjusted p-values with the level which we control family-level error for. For example, if an adjusted p-value of a hypothesis $H_i$ is less than or equal to $\alpha_0$, then we can reject $H_i$ while controlling $FWER$ for $\alpha_0$. Unlike p-values, adjusted p-values do not give us the information about the type I error probability of that hypothesis.
 
 \subsection{Regression dependency of hypotheses}
-For some family-level error controlling procedure, assumption on dependence structure is needed. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability that corresponding null hypothesis is true does not decreases.
+For some family-level error controlling procedure, assumption on dependence structure is needed. Let $I_0$ be a subset of indices of hypotheses in a set of tests. If there exists no regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in a set are said to be independent. If there is a positive regression dependence between non-rejected test statistics and true-null test statistics, then the hypotheses in the set are said to have positive regression dependency on each one from a subset $I_0$ ($PRDS$ on $I_0$). Benjamini and Yekutieli (2001) defined $PRDS$ on $I_0$ as follows: \enquote{For any increasing set $D$, and for each $i \in I_0$, $P(X \in D | X_i = x)$ is non-decreasing in $x$}. More intuitive explanation uses p-values. For each $i \in I_0$, If p-values increases, then probability that corresponding null hypothesis is true does not decreases.
 
 \subsection{Notations}
 \begin{table}[ht]
@@ -71,7 +71,7 @@ Notations used to define family-level error concepts mathematically are as descr
 
 
 \section{Family-Wise Error Rate (FWER)}
-Family-wise error rate is a probability that at least one type I error occurs when testing each individual hypothesis in a set. Using previous notations, it can be defined as $P(V \geq 1) = 1 - P(V=0) = E(I_{V \geq 1})$. If FWER is controlled at level $\alpha_0$, then probability that one or more type I error occurs in the set is less than or equal to $\alpha_0$. \par
+Family-wise error rate is a probability that at least one of the type I error occurs when testing each individual hypothesis in a set. Using previous notations, it can be defined as $P(V \geq 1) = 1 - P(V=0) = E(I_{V \geq 1})$. If FWER is controlled at level $\alpha_0$, then probability that one or more type I error occurs in the set is less than or equal to $\alpha_0$. \par
     In early works, FWER was controlled by using a specific type of test statistic - $t$, normal, multivariate $t$, or multivariate normal. After Bonferroni procedure was introduced, precedures using p-values from individual testings became dominant.
 
 \subsection{Bonferroni procedure}
@@ -100,7 +100,7 @@ Adjusted (or \enquote{Bonferronied}) p-value of $i$th hypothesis is equal to $mi
 \end{algorithmic}
 \end{algorithm}
 
-Dunn simplified MCP correction in two major ways. (i) Dunn introduced a control procedure which is based on individual p-values. It is possible to conduct any kind of multiple testing, even it does not uses specific type of test statistic. (ii) Bonferroni procedure is remarkably computationally efficient. By setting the procedure as \textit{algorithm 1}, Bonferroni correction only costs $O(n)$. In many big-data analysis where high complexity algorithms are not feasible to use, Bonferroni procedure can help. Also, Bonferroni procedure does not require the assumption of regression dependence. However, excessive loss in testing power in Bonferroni procedure led to the development of stepwise FWER controlling procedures.
+Dunn simplified MCP correction in two major ways. (i) Dunn introduced a control procedure which is based on individual p-values. It is possible to conduct any kind of multiple testing, even it does not use specific type of test statistic. (ii) Bonferroni procedure is remarkably computationally efficient. By setting the procedure as \textit{algorithm 1}, Bonferroni correction only costs $O(n)$. In many big-data analyses where high complexity algorithms are not feasible to use, Bonferroni procedure can help. Also, Bonferroni procedure does not require the assumption of regression dependence. However, excessive loss in testing power in Bonferroni procedure led to the development of stepwise FWER controlling procedures.
 
 \subsection{Holm procedure}
 In addition to improve power of test while controlling for same level of FWER, Holm (1979) designed a step-up procedure. In fact, it is one of the first stepwise algorithm for MCP correction. Holm procedure can be conducted as follows. 
@@ -125,7 +125,7 @@ p_{(j-1)} \leq \dfrac{\alpha}{m-j+2} \leq \dfrac{\alpha}{m_0}.\\
 \end{equation}
 
 Adjusted p-value of $i$th hypothesis for Holm procedure is equal to $min(p_i \times (m-i+1), 1)$. \par
-    As Holm procedure compares individual p-values to $\dfrac{\alpha}{m}, \dfrac{\alpha}{m-1}, ..., \dfrac{\alpha}{1}$ instead of uniform level $\dfrac{\alpha}{m}$ as in Bonferroni procedure, Holm procedure is uniformly more powerful than Bonferroni procedure, though power gain is little. Holm procedure also does not assume specific regression dependence of hypotheses.
+    As Holm procedure compares individual p-values to $\dfrac{\alpha}{m}, \dfrac{\alpha}{m-1}, ..., \dfrac{\alpha}{1}$ instead of uniform level $\dfrac{\alpha}{m}$ as in Bonferroni procedure, Holm procedure is uniformly more powerful than Bonferroni procedure, though the power gain is little. Holm procedure also does not assume specific regression dependence of hypotheses.
 
 
 \subsection{Hochberg procedure}
@@ -142,7 +142,7 @@ Hochberg (1988) sharpened Holm's method to be more powerful. In his two-paged pa
 
 \section{False Discovery Rate (FDR)}
 While the field concentrated on improving testing power of FWER controlling method, some insisted to develop a new concept of family-level error, other than FWER. FWER has drawbacks: (i) Controlling for FWER has much less power than controlling for experiment-wise error. (ii) In many cases it is not necessary to control FWER in strong manner made. Saville is the one who recommended using per comparison error rate (PCER) than FWER, because of these reasons. \par
-    Inspired by the fact that the ratio of the number of false rejection to the number of total rejection might be a useful error rate to control for, Benjamini and Hochberg (1995) introduced a seminal concept, false discovery rate (FDR). FDR is defined as \enquote{expectation of ratio of the number of erroneous rejection to the number of total rejection}, which can be denoted as $E(Q)=E(V/R)=E(V/(S+V))$. By defining FDR as $E(Q)$, relationship with FWER can be derived.
+    Inspired by the fact that the ratio of the number of false rejection to the number of total rejection might be a useful error rate to control for, Benjamini and Hochberg (1995) introduced a seminal concept, false discovery rate (FDR). FDR is defined as \enquote{the expectation of the ratio of the number of erroneous rejection to the number of total rejection}, which can be denoted as $E(Q)=E(V/R)=E(V/(S+V))$. By defining FDR as $E(Q)$, relationship with FWER can be derived.
     \begin{enumerate}
     \item if $m_0=m$, then FDR $=$ FWER. \\
       $\because s=0$, $v=r$. $P(V \geq 1)= E(Q)$
@@ -150,7 +150,7 @@ While the field concentrated on improving testing power of FWER controlling meth
       $\because v>0$, $Q \leq I_{V \geq 1}$, $E(Q) \leq E(I_{V \geq 1}) = P(V \geq 1)$
     \end{enumerate}
 Because of this relationship, controlling for FWER also controls FDR in strong manner. In contrary, controlling for FDR weakly controls FWER (does not assure that FWER is also being controlled). \par
-    Due to the high testing power, it is recommended to use FDR in following cases. (i) When the family-level conclusion is not sensitive to failures in individual testing. (ii) When conducting exploratory analysis, or screening to find as many potential discoveries as possible.
+    Due to the high testing power, it is recommended to use FDR in following cases. (i) When the family-level conclusion is insensitive to failures in individual testing. (ii) When conducting exploratory analysis, or screening to find as many potential discoveries as possible.
 
 \subsection{Benjamini-Hochberg (B-H) procedure}
 Alongside the introduction of FDR, Benjamini and Hochberg developed a step-up procedure to easily control FDR at certain level $q^*$.
@@ -159,11 +159,11 @@ Alongside the introduction of FDR, Benjamini and Hochberg developed a step-up pr
   \item Find the largest $j$, in which $p_{(j)} \leq \dfrac{j}{m}q^*$.
   \item Reject $H_{0_{(k)}}$'s, where $k=1, 2, ..., j$.
 \end{enumerate}
-Unlike Hochberg procedure for FWER control which used hyperbolic form of constant ($\dfrac{\alpha}{m-\textbf{\textit{j}}+1}$), B-H procedure for FDR control uses linear form of constant ($\dfrac{\textbf{\textit{j}}}{m}q^*$). Because linear form of constant shrinks slowly than that of hyperbolic form, B-H procedure has much larger testing power than any FWER controlling procedures. Benjamini and Hochberg suggested that the procedure would work properly under independence assumption. It was later proved to be appropriate method under PRDS too (Benjamini and Yekutieli, 2001) (3), (4).
+Unlike the Hochberg procedure for FWER control which used hyperbolic form of constant ($\dfrac{\alpha}{m-\textbf{\textit{j}}+1}$), the B-H procedure for FDR control uses linear form of constant ($\dfrac{\textbf{\textit{j}}}{m}q^*$). Because linear form of constant shrinks slowly than that of hyperbolic form, the B-H procedure has much larger testing power than that of FWER controlling procedures. Benjamini and Hochberg suggested that the procedure would work properly under independence assumption. It was later proved to be appropriate method under PRDS too (Benjamini and Yekutieli, 2001) (3), (4).
 
 
 \subsection{Benjamini-Yekutieli (B-Y) procedure}
-Benjamini and Yekutieli introduced a modified version of B-H procedure, which can handle the situation under arbitrary dependency. By comparing ordered p-value $p_{(j)}$ to $\dfrac{j}{m \cdot c(m)}q^*$ (under non-negative dependece $c(m)=1$ otherwise $=\sum_{j=1}^m \dfrac{1}{j}$), instead of $\dfrac{j}{m \cdot c(m)}q^*$, B-Y procedure can control FDR at desired level even under negative or arbitrary regression dependence (3), (5).
+Benjamini and Yekutieli introduced a modified version of the B-H procedure, which can handle the situation under arbitrary dependency. By comparing ordered p-value $p_{(j)}$ to $\dfrac{j}{m \cdot c(m)}q^*$ (under non-negative dependece $c(m)=1$ otherwise $=\sum_{j=1}^m \dfrac{1}{j}$), instead of $\dfrac{j}{m \cdot c(m)}q^*$, the B-Y procedure can control FDR at desired level even under negative or arbitrary regression dependence (3), (5).
 
 \begin{equation}
 \begin{aligned}\label{proof-by1}
@@ -190,8 +190,8 @@ E(Q)&=\sum_{i=1}^{m_0} \sum_{k=1}^m \dfrac{1}{k}P(p_i \leq q_k \cap C_k^{(i)}) =
 \end{equation}
 
 \subsection{Brief introduction to local FDR}
-While control procedure for family-level of FDR has been developed, nothing described an expected false rejection ratio of an individual hypothesis in the set. FDR controlling procedures utilized experiment-wise p-values, which were probability of type I error, not the expected rate of false rejection. \par
-    To report expected false rejection rate of individual gene of interest from microarray data, Efron (2001) grafted empirical bayes approach to MCP. In empricial bayes method, hyperparameters of prior distribution are fitted using the observed data, unlike standard bayes method which sets hyperparameters beside the data. Efron defined local-level of FDR (local FDR) as $fdr(z)=\dfrac{p_0 f_0(z)}{f(z)}$, where $z$ is the domain of the densities (observed data), $p_0$ is a prior probability that a hypothesis (null) is true, $f_0(Z)$ is the density of true nulls, $f_1(Z)$ is the density of false nulls, and $f(Z)=p_0f_0(Z) + p_1f_1(Z)$ is the joint density of true and false nulls, which can be expressed as a mixture of true and false null densities. For crude local FDR inference in large sample, we can use $p_0 \geq 0.9$, $f_0(Z) \stackrel{d}{=} N(0, 1)$, and estimate $f(Z)$ with $Poisson$ GLM.
+While control procedure for family-level of FDR has been developed, nothing described an expected false rejection ratio of an individual hypothesis in the set. FDR controlling procedures utilized experiment-wise p-values, which were probability of the type I error, not the expected rate of false rejection. \par
+    To report the expected false rejection rate of individual gene of interest from microarray data, Efron (2001) grafted empirical bayes approach to MCP. In empricial bayes method, hyperparameters of prior distribution are fitted using the observed data, unlike standard bayes method which sets hyperparameters beside the data. Efron defined local-level of FDR (local FDR) as $fdr(z)=\dfrac{p_0 f_0(z)}{f(z)}$, where $z$ is the domain of the densities (observed data), $p_0$ is a prior probability that a hypothesis (null) is true, $f_0(Z)$ is the density of true nulls, $f_1(Z)$ is the density of false nulls, and $f(Z)=p_0f_0(Z) + p_1f_1(Z)$ is the joint density of true and false nulls, which can be expressed as a mixture of true and false null densities. For crude local FDR inference in large sample, we can use $p_0 \geq 0.9$, $f_0(Z) \stackrel{d}{=} N(0, 1)$, and estimate $f(Z)$ with $Poisson$ GLM.
 
 \vspace{0.2in}
 
@@ -211,8 +211,8 @@ A simple simulation was conducted to compare different kinds of MCP correction p
 \caption{simple Z-test simulation for comparison of MCP correction methods}
 \end{figure}
 
-Controlling for FDR has much more power gain than Bonferroni or Holm FWER method (Figure 1, left). While only ~110 rejections were made in FWER controlling procedures, 739 rejections were made in B-H FDR procedure. ratios of false rejection to total rejection were .009, .009, .014 respectively, suggesting that B-H procedure appropriately controlled FDR in desired manner. \par
-    Local FDRs have generally higher value than corresponding p-values (Figure 1, right), indicating that expected false rejection rate in an interval which contains a hypothesis of interest is usually larger than type I error rate. While the difference was quite large, it is possible to lower the values of local FDR by accurately estimating $p_0$. With $p_0=0.5$, the result was much more reasonable in this generated dataset, considering the correspondence to individual p-values.
+Controlling for FDR has much more power gain than Bonferroni or Holm FWER method (Figure 1, left). While only \~{}110 rejections were made in FWER controlling procedures, 739 rejections were made in the B-H FDR procedure. Ratios of false rejection to total rejection were .009, .009, .014 respectively, suggesting that the B-H procedure appropriately controlled FDR in desired manner. \par
+    Local FDRs have generally higher value than corresponding p-values (Figure 1, right), indicating that the expected false rejection rate in an interval which contains a hypothesis of interest is usually larger than the type I error rate. While the difference was quite large, it is possible to lower the values of local FDR by accurately estimating $p_0$. With $p_0=0.5$, the result was much more reasonable in this generated dataset, considering the correspondence to individual p-values.
 
 \pagebreak
 
